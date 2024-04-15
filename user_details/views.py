@@ -12,7 +12,6 @@ from user_details.models import Registermodel, Contact_details, Address_details,
 @csrf_exempt
 @api_view(['POST', 'GET'])
 def Register(request):
-
     if request.method == "POST":
         data = json.loads(request.body)
         if "id" not in data:

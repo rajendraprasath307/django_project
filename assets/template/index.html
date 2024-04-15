@@ -1,82 +1,90 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--    <style>-->
-<!--        form {-->
-<!--            display: flex;-->
-<!--            flex-direction: column;-->
-<!--            align-items: center;-->
-<!--            margin-top: 50px;-->
-<!--        }-->
-<!--        input, label, button {-->
-<!--            margin-bottom: 10px;-->
-<!--            padding: 8px;-->
-<!--            width: 300px;-->
-<!--            font-size: 16px;-->
-<!--        }-->
-<!--        button {-->
-<!--            cursor: pointer;-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<body>-->
-<!--        <form id="userForm" name="myform">-->
-<!--        <label for="firstName">First Name:</label>-->
-<!--        <input type="text" name="fname" id="firstName" placeholder="Enter your first name" required>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        input, label, button {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 300px;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+        <form id="userForm" name="myform">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="fname" id="firstName" placeholder="Enter your first name" required>
 
-<!--        <label for="lastName">Last Name:</label>-->
-<!--        <input type="text" name="lname" id="lastName" placeholder="Enter your last name" required>-->
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lname" id="lastName" placeholder="Enter your last name" required>
 
-<!--            <label for="userID">User ID:</label>-->
-<!--        <input type="text" name="userid" id="userID" placeholder="Enter your user ID" required>-->
+            <label for="userID">User ID:</label>
+        <input type="text" name="userid" id="userID" placeholder="Enter your user ID" required>
 
-<!--            <label for="password">PassWord:</label>-->
-<!--        <input type="number" name="password" id="passWord" placeholder="Enter your password" required>-->
-
-
-<!--        <label for="mobileNumber">Mobile Number:</label>-->
-<!--        <input type="tel" name="mobileno" id="mobileNumber" placeholder="Enter your mobile number" pattern="[0-9]{10}" title="Please enter 10 digit mobile number" required>-->
+            <label for="password">PassWord:</label>
+        <input type="number" name="password" id="passWord" placeholder="Enter your password" required>
 
 
-<!--        <label for="email">Email:</label>-->
-<!--        <input type="email" name="email" id="email" placeholder="Enter your email" required><br>-->
+        <label for="mobileNumber">Mobile Number:</label>
+        <input type="tel" name="mobileno" id="mobileNumber" placeholder="Enter your mobile number" pattern="[0-9]{10}" title="Please enter 10 digit mobile number" required>
 
 
-<!--        <button type="submit" onclick=validate_form()>Submit</button>-->
-<!--    </form>-->
-<!--<script>-->
-<!--    function validate_form(){-->
-<!--        let fn = document.forms['myform']["fname"].value;-->
-<!--        let ln = document.forms['myform']["lname"].value;-->
-<!--        let uid = document.forms['myform']["userid"].value;-->
-<!--        let pwd = document.forms['myform']["password"].value;-->
-<!--        let mno = document.forms['myform']["mobileno"].value;-->
-<!--        let e = document.forms['myform']["email"].value;-->
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
 
-<!--        let obj = {-->
-<!--            "firstname":fn,-->
-<!--            "lastname":ln,-->
-<!--            "userid":uid,-->
-<!--            "password":pwd,-->
-<!--            "mblenum":mno,-->
-<!--            "email":e-->
-<!--        };-->
-<!--        const url = 'http://127.0.0.1:8000/';-->
-<!--        fetch(url + "register", {-->
-<!--            method: 'POST',-->
-<!--            header:{-->
-<!--                'Content-Type': 'application/json',-->
-<!--                'Accept': 'application/json'-->
-<!--            },-->
-<!--            body: JSON.stringify(obj)-->
-<!--        });1-->
-<!--      };-->
-<!--    myform.reset()-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
+
+        <button type="submit" onclick=validate_form(event)>Submit</button>
+    </form>
+<script>
+    function validate_form(event){
+        event.preventDefault();
+
+        let fn = document.forms['myform']["fname"].value;
+        let ln = document.forms['myform']["lname"].value;
+        let uid = document.forms['myform']["userid"].value;
+        let pwd = document.forms['myform']["password"].value;
+        let mno = document.forms['myform']["mobileno"].value;
+        let e = document.forms['myform']["email"].value;
+
+        let PARAMS= {
+            "firstname":fn,
+            "lastname":ln,
+            "userid":uid,
+            "password":pwd,
+            "mblenum":mno,
+            "email":e
+        }
+        const url = 'http://127.0.0.1:8000/';
+        fetch(url + "Register", {
+            method: 'POST',
+            header:{
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(PARAMS)
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log(data);
+        alert(data);
+         })
+    };
+</script>
+</body>
+</html>
+
+
 
 
 <!DOCTYPE html>
